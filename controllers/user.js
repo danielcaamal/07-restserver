@@ -103,9 +103,11 @@ const deleteUser = async (req, res) => {
         const id = req.params.id;
 
         const user = await User.findByIdAndUpdate(id, { state: false });
+        const authenticatedUser = req.user;
 
         res.status(StatusCodes.ACCEPTED).json({
-            user
+            user,
+            authenticatedUser
         });
     } catch (error) {
         console.error(error);

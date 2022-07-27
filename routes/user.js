@@ -7,7 +7,7 @@ const { check } = require('express-validator');
 // Internal imports
 const { getUsers, updateUser, createUser, deleteUser, getUser } = require('../controllers/user');
 const { isValidRole, uniqueEmail, validId } = require('../helpers/db-validators');
-const { validateFields } = require('../middlewares/validate-fields');
+const { validateFields, validateJWT, haveAccess } = require('../middlewares');
 
 const router = Router();
 
@@ -36,6 +36,8 @@ router.patch('/:id', [
 ],updateUser);
 
 router.delete('/:id', [
+    validateJWT,
+    haveAccess('ADMIN_ROLE', 'SALES_ROLE'),
     check('id', 'Not a valid id').isMongoId(),
     check('id').custom(validId),
     validateFields

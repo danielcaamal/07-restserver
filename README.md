@@ -24,3 +24,13 @@
 - File deletion
 - Physically deleted from the database
 - Deletion by status on a collection field
+
+## Section 3
+- Introduction to tokens
+- JWT
+- personalized login
+- Route protection via token
+- Read token payload without signature
+- Important tips for POSTMan
+- Heroku deployments for production testing
+- Use of Middleware

@@ -13,6 +13,7 @@ class Server {
         this.port = process.env.PORT || 3000;
 
         // Paths
+        this.authPath = '/api/auth';
         this.userPath = '/api/user';
 
         // Database
@@ -42,8 +43,13 @@ class Server {
     }
 
     routes () {
+        // Auth Routes
+        this.app.use(this.authPath, require('../routes/auth'));
+
         // User Routes
         this.app.use(this.userPath, require('../routes/user'));
+        
+
     }
 
     start () {
